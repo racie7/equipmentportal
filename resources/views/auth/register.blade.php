@@ -52,7 +52,7 @@
 					</div>
 					<div class="form-group has-feedback">
 						<select name="department" id="department" class="form-control" required>
-							<option selected disabled> -- Select your Department --</option>
+							{{--<option selected disabled> -- Select your Department --</option>--}}
 							<option value="ict">Department of ICT</option>
 							<option value="procurement">Department of Procurement</option>
 							<option value="catering">Department of Catering</option>
