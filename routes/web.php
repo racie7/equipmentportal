@@ -18,6 +18,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
+	'prefix' => 'account',
+	'as' => 'account.',
+], function () {
+	// Show the admin dashboard
+	Route::get('password', 'SystemController@showPasswordForm')->name('password');
+	Route::put('password', 'SystemController@updatePassword')->name('password');
+});
+
+/**
+ * All the admin routes go here
+ */
+Route::group([
 	'prefix' => 'admin',
 	'as' => 'admin.',
 ], function () {
