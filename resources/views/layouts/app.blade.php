@@ -103,7 +103,7 @@
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{ route('account.password') }}" class="nav-link">
 									<i class="fa fa-key nav-icon"></i>
 									<p>Password Settings</p>
 								</a>
