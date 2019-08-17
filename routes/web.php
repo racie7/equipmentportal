@@ -16,3 +16,11 @@ Route::get('/', 'PageController@index')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+	'prefix' => 'admin',
+	'as' => 'admin.',
+], function () {
+	// Show the admin dashboard
+	Route::get('home', 'AdminController@index')->name('home');
+});
