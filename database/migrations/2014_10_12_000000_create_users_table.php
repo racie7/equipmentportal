@@ -15,10 +15,13 @@ class CreateUsersTable extends Migration {
 			$table->bigIncrements('id');
 			$table->string('name');
 			$table->string('email')->unique();
-			$table->timestamp('email_verified_at')->nullable();
+			$table->string('staff_number')->unique();
+			$table->string('department');
 			$table->string('password');
+			$table->boolean('is_admin')->default(false);
 			$table->rememberToken();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
