@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-class HomeController extends Controller {
+class AdminController extends Controller {
 	/**
 	 * Create a new controller instance.
 	 *
@@ -12,16 +10,15 @@ class HomeController extends Controller {
 	 */
 	public function __construct() {
 		$this->middleware([
-			'auth', 'is_user',
+			'auth', 'is_admin',
 		]);
 	}
 
 	/**
-	 * Show the application dashboard.
-	 *
-	 * @return \Illuminate\Contracts\Support\Renderable
+	 * Show the admin's dashboard
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index() {
-		return view('home');
+		return view('admin.home');
 	}
 }
