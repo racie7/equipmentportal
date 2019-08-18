@@ -78,17 +78,17 @@
 					</li>
 					<li class="nav-item has-treeview">
 						<a href="#" class="nav-link">
-							<i class="nav-icon fa fa-building"></i>
+							<i class="nav-icon fa fa-tools"></i>
 							<p>
-								Requests
+								Equipments
 								<i class="right fa fa-angle-left"></i>
 							</p>
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="" class="nav-link">
-									<i class="fa fa-plus-circle nav-icon"></i>
-									<p>New Requests</p>
+								<a href="{{ route('equipments.available') }}" class="nav-link">
+									<i class="fa fa-check-circle nav-icon"></i>
+									<p>Available Requests</p>
 								</a>
 							</li>
 						</ul>

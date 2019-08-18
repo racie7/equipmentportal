@@ -18,6 +18,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
+	'prefix' => 'equipments',
+	'as' => 'equipments.',
+], function () {
+	// Show equipments available
+	Route::get('available', 'HomeController@showEquipments')->name('available');
+	Route::post('available', 'HomeController@requestEquipment')->name('available');
+});
+
+Route::group([
 	'prefix' => 'account',
 	'as' => 'account.',
 ], function () {
