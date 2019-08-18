@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -23,5 +24,18 @@ class HomeController extends Controller {
 	 */
 	public function index() {
 		return view('home');
+	}
+
+	public function showEquipments() {
+		// Get the available equipment
+		$equipments = Equipment::where('is_available', true)->paginate(500, [
+			'id', 'tag_number', 'description', 'serial_number', 'cost', 'nbv', 'location',
+		]);
+
+		return view('equipments.available', compact('equipments'));
+	}
+
+	public function requestEquipment(Request $request) {
+		return $request;
 	}
 }
