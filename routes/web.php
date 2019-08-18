@@ -24,6 +24,9 @@ Route::group([
 	// Show equipments available
 	Route::get('available', 'HomeController@showEquipments')->name('available');
 	Route::post('available', 'HomeController@requestEquipment')->name('available');
+
+	// Get user requests
+	Route::get('requests', 'HomeController@myRequests')->name('requests');
 });
 
 Route::group([
@@ -46,4 +49,16 @@ Route::group([
 	Route::get('home', 'AdminController@index')->name('home');
 
 	Route::resource('equipments', 'EquipmentController');
+
+	Route::group([
+		'prefix' => 'equipments',
+		'as' => 'equipments.',
+	], function () {
+		Route::get('borrowing/requests', 'EquipmentController@borrowingRequests')->name('borrowing');
+		Route::get('borrowing/requests/{id}', 'EquipmentController@viewBorrowingRequest')
+			->name('borrowing.request');
+
+		Route::post('borrowing/requests/{id}', 'EquipmentController@approveRequest')
+			->name('borrowing.request');
+	});
 });

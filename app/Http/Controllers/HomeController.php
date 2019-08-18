@@ -64,4 +64,19 @@ class HomeController extends Controller {
 
 		return redirect()->back()->with('success', 'Request placed successfully.');
 	}
+
+	/**
+	 * Load the user borrowing requests
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function myRequests(Request $request) {
+		$requests = \App\Request::with('equipment:id,tag_number,description')
+			->where('user_id', $request->user()->id)
+			->paginate('500', [
+				'id', 'is_processed', 'user_id', 'created_at', 'equipment_id', 'returns_at', 'is_returned',
+			]);
+
+		return view('equipments.requests', compact('requests'));
+	}
 }

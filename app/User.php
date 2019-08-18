@@ -40,4 +40,12 @@ class User extends Authenticatable {
 	protected $casts = [
 		'is_admin' => 'boolean',
 	];
+
+	/**
+	 * Get the user borrowing requests
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function requests() {
+		return $this->hasMany(Request::class);
+	}
 }

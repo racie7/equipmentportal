@@ -91,6 +91,12 @@
 									<p>Available Equipments</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ route('equipments.requests') }}" class="nav-link">
+									<i class="fa fa-eye nav-icon"></i>
+									<p>My Requests</p>
+								</a>
+							</li>
 						</ul>
 					</li>
 					<li class="nav-item has-treeview">

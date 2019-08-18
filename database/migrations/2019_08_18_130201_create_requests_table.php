@@ -14,6 +14,8 @@ class CreateRequestsTable extends Migration {
 		Schema::create('requests', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->boolean('is_processed')->default(false);
+			$table->boolean('is_returned')->default(false);
+			$table->date('returns_at')->nullable();
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('equipment_id');
 			$table->unsignedBigInteger('processed_by')->nullable();

@@ -19,7 +19,7 @@ class Request extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'is_processed', 'user_id', 'equipment_id', 'processed_by',
+		'is_processed', 'user_id', 'equipment_id', 'processed_by', 'is_returned', 'returns_at',
 	];
 
 	/**
@@ -30,4 +30,20 @@ class Request extends Model {
 	protected $casts = [
 		'is_available' => 'boolean',
 	];
+
+	/**
+	 * Get the user who made the request
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user() {
+		return $this->belongsTo(User::class, 'user_id');
+	}
+
+	/**
+	 * Get the equipment data
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function equipment() {
+		return $this->belongsTo(Equipment::class, 'equipment_id');
+	}
 }

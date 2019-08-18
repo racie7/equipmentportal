@@ -121,4 +121,34 @@ class EquipmentController extends Controller {
 	public function destroy($id) {
 		//
 	}
+
+	public function borrowingRequests() {
+		$requests = \App\Request::with('equipment:id,tag_number,description')
+			->orderBy('is_processed')
+			->paginate('500', [
+				'id', 'is_processed', 'user_id', 'created_at', 'equipment_id',
+			]);
+
+		return view('admin.equipments.requests', compact('requests'));
+	}
+
+	public function viewBorrowingRequest(int $id) {
+		$request = \App\Request::with(
+			'equipment:id,tag_number,description',
+			'user:id,name,staff_number,department,email,created_at'
+		)->findOrFail($id, ['id', 'is_processed', 'user_id', 'created_at', 'equipment_id',]);
+
+		return view('admin.equipments.view-request', compact('request'));
+	}
+
+	public function approveRequest(Request $request, int $id) {
+		// Find the request by id, approve it
+		\App\Request::find($id)->update([
+			'is_processed' => true,
+			'processed_by' => $request->user()->id,
+			'returns_at' => $request->input('date'),
+		]);
+
+		return redirect()->back()->with('success', 'Request approved successfully.');
+	}
 }
