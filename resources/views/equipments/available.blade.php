@@ -22,6 +22,7 @@
 	<section class="content">
 		<div class="container-fluid">
 			<!-- /.row -->
+			@include('partials.alerts')
 			<div class="row">
 				<div class="col-12">
 					@if(count($equipments))
@@ -65,6 +66,8 @@
 												<form action="{{ route('equipments.available') }}" method="post">
 													@csrf
 													<input type="hidden" name="_id" value="{{ $equipment->id }}">
+													<input type="hidden" name="_name"
+													       value="{{ $equipment->description }}">
 													<button class="btn btn-primary btn-primary btn-sm">
 														Request
 													</button>
