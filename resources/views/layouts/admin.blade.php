@@ -78,17 +78,17 @@
 					</li>
 					<li class="nav-item has-treeview">
 						<a href="#" class="nav-link">
-							<i class="nav-icon fa fa-building"></i>
+							<i class="nav-icon fa fa-tools"></i>
 							<p>
-								Requests
+								Equipments Manager
 								<i class="right fa fa-angle-left"></i>
 							</p>
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{ route('admin.equipments.index') }}" class="nav-link">
 									<i class="fa fa-plus-circle nav-icon"></i>
-									<p>New Requests</p>
+									<p>View Equipments</p>
 								</a>
 							</li>
 						</ul>
