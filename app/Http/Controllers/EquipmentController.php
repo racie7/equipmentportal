@@ -34,7 +34,7 @@ class EquipmentController extends Controller {
 	 * Store a newly created resource in storage.
 	 *
 	 * @param UploadCSVRequest $request
-	 * @return void
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function store(UploadCSVRequest $request) {
 		// Read the csv, convert it to csv
@@ -66,6 +66,8 @@ class EquipmentController extends Controller {
 				}
 			}
 		}
+
+		return redirect()->back()->with('success', 'Equipments CSV successfully processed.');
 	}
 
 	/**
