@@ -19,6 +19,10 @@ class CreateRequestsTable extends Migration {
 			$table->unsignedBigInteger('processed_by')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('equipment_id')->references('id')->on('equipment')
+				->onDelete('cascade');
 		});
 	}
 
