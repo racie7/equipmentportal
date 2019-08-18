@@ -30,4 +30,12 @@ class Equipment extends Model {
 	protected $casts = [
 		'is_available' => 'boolean',
 	];
+
+	/**
+	 * Get the borrowing requests
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function requests() {
+		return $this->hasMany(Request::class);
+	}
 }

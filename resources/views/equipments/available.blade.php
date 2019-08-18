@@ -1,4 +1,4 @@
-@extends(auth()->user()->is_admin ? 'layouts.admin' : 'layouts.app')
+@extends('layouts.app')
 
 @section('content')
 	
@@ -11,7 +11,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="breadcrumb float-sm-right">
-						<a href="{{ route('admin.equipments.create') }}" class="btn btn-info btn-sm">Upload CSV</a>
+						<a href="{{ url()->previous() }}" class="btn btn-info btn-sm">Go Back</a>
 					</div>
 				</div>
 			</div>
@@ -22,6 +22,7 @@
 	<section class="content">
 		<div class="container-fluid">
 			<!-- /.row -->
+			@include('partials.alerts')
 			<div class="row">
 				<div class="col-12">
 					@if(count($equipments))
@@ -47,13 +48,10 @@
 									<thead>
 									<tr>
 										<th width="1">#</th>
-										<th>Tag NO</th>
-										<th>Class</th>
+										<th class="text-center">Tag NO</th>
 										<th>Description</th>
-										<th>Serial NO</th>
-										<th>Cost</th>
-										<th>NBV</th>
 										<th>Location</th>
+										<th class="text-center">Actions</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -61,13 +59,20 @@
 										@php($cost = is_null($equipment->cost) ? 'N/A' : number_format($equipment->cost))
 										<tr>
 											<td>{{ $loop->iteration }}</td>
-											<td>{{ $equipment->tag_number }}</td>
-											<td>{{ $equipment->class }}</td>
+											<td class="text-center">{{ $equipment->tag_number }}</td>
 											<td>{{ $equipment->description }}</td>
-											<td>{{ $equipment->serial_number }}</td>
-											<td>{{ $cost }}</td>
-											<td>{{ number_format($equipment->nbv) }}</td>
 											<td>{{ $equipment->location }}</td>
+											<td class="text-center">
+												<form action="{{ route('equipments.available') }}" method="post">
+													@csrf
+													<input type="hidden" name="_id" value="{{ $equipment->id }}">
+													<input type="hidden" name="_name"
+													       value="{{ $equipment->description }}">
+													<button class="btn btn-primary btn-primary btn-sm">
+														Request
+													</button>
+												</form>
+											</td>
 										</tr>
 									@endforeach
 									</tbody>
@@ -86,14 +91,14 @@
 								<div class="row">
 									<div class="col-md-6 offset-md-3">
 										<div class="alert alert-info alert-dismissible text-center">
-											No equipments were found. Please add some.
+											No equipments were found. Please check back later.
 										</div>
 									</div>
 								</div>
 								<div class="text-center">
-									<a href="{{ route('admin.equipments.create') }}"
+									<a href="{{ url()->previous() }}"
 									   class="btn btn-primary text-center">
-										Add Equipments
+										Go Back
 									</a>
 								</div>
 							</div>

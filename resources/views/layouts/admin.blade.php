@@ -91,6 +91,12 @@
 									<p>View Equipments</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ route('admin.equipments.borrowing') }}" class="nav-link">
+									<i class="fa fa-eye nav-icon"></i>
+									<p>Borrowing Requests</p>
+								</a>
+							</li>
 						</ul>
 					</li>
 					<li class="nav-item has-treeview">

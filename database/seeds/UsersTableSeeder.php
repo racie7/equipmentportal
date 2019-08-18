@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder {
 		$users = [
 			[
 				'name' => 'Artisan',
+				'email' => 'artisan@test.com',
 				'department' => 'ict',
 				'staff_number' => 'A/1234/14',
 				'is_admin' => true,
@@ -29,7 +30,7 @@ class UsersTableSeeder extends Seeder {
 		foreach ($users as $user) {
 			DB::table('users')->insert([
 				'name' => ucwords($user['name']),
-				'email' => strtolower($user['name'] . '@test.com'),
+				'email' => strtolower($user['email']),
 				'password' => bcrypt('secret'),
 				'is_admin' => $user['is_admin'],
 				'department' => $user['department'],
