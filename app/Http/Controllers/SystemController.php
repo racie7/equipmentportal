@@ -55,4 +55,13 @@ class SystemController extends Controller {
 
 		return redirect()->back()->with('success', 'Your account password has been successfully changed.');
 	}
+
+	/**
+	 * Here we process the csv file uploaded. We will convert it to an array
+	 * @param object $file
+	 * @return bool|false|string|string[]|null
+	 */
+	public static function processCSVFiles(object $file) {
+		return mb_convert_encoding(array_map('str_getcsv', file($file->getRealPath())), 'UTF-8', 'UTF-8');
+	}
 }
