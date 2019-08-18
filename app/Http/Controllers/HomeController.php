@@ -36,6 +36,32 @@ class HomeController extends Controller {
 	}
 
 	public function requestEquipment(Request $request) {
-		return $request;
+		// Extract the request data
+		$user = $request->user();
+		$equipmentID = $request->get('_id');
+
+		try {
+			// Check if the user has a pending request on the equipment
+			$pendingRequest = \App\Request::whereIn('user_id', [$user->id])
+				->where('is_processed', false)
+				->where('equipment_id', $equipmentID)
+				->first();
+
+			if ($pendingRequest) {
+				return redirect()->back()->with('error', sprintf(
+						"You have a pending request on %s. Please wait for approval.", $request->get('_name'))
+				);
+			}
+
+			// Create the borrowing request
+			\App\Request::create([
+				'user_id' => $request->user()->id,
+				'equipment_id' => $equipmentID,
+			]);
+		} catch (\Exception $exception) {
+			return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+		}
+
+		return redirect()->back()->with('success', 'Request placed successfully.');
 	}
 }
