@@ -88,7 +88,7 @@
 							<li class="nav-item">
 								<a href="{{ route('equipments.available') }}" class="nav-link">
 									<i class="fa fa-check-circle nav-icon"></i>
-									<p>Available Requests</p>
+									<p>Available Equipments</p>
 								</a>
 							</li>
 						</ul>
