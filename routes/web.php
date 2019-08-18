@@ -35,4 +35,6 @@ Route::group([
 ], function () {
 	// Show the admin dashboard
 	Route::get('home', 'AdminController@index')->name('home');
+
+	Route::resource('equipments', 'EquipmentController');
 });
